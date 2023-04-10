@@ -94,6 +94,9 @@ function Home() {
               borderBottom: "1px solid black",
             }}
             src={"https://backendapi-yo8i.onrender.com/BookImagesUploaded/" + book.image}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src="https://backendapi-yo8i.onrender.com/BookImagesUploaded/noImage.png";}}
           />
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>
