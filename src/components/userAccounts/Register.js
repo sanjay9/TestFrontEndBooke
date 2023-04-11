@@ -35,7 +35,7 @@ function Register(props) {
     }
 
     await axios
-      .post("http://localhost:3500/user/register/", userRec)
+      .post("https://backendapi-yo8i.onrender.com/user/register/", userRec)
       .then((res) => {
         
         console.log(res.data.message);

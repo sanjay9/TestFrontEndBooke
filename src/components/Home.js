@@ -12,7 +12,7 @@ function Home() {
   let navigate = useNavigate();
   React.useEffect(() => {
     axios
-      .get("http://localhost:3500/book/")
+      .get("https://backendapi-yo8i.onrender.com/book/")
       .then((res) => setBooks(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -26,7 +26,7 @@ function Home() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:3500/book/${isbn}`);
+      const response = await axios.get(`https://backendapi-yo8i.onrender.com/book/${isbn}`);
       setBooks(response.data);
       if(response.data.length == 0) alert("Search Returned 0 results")
       //setBook(response.data);
@@ -41,7 +41,7 @@ function Home() {
 
   const sortBooks = async (sortOrder) => {
     try {
-      const response = await axios.get(`http://localhost:3500/book/sort/${sortOrder}`);
+      const response = await axios.get(`https://backendapi-yo8i.onrender.com/book/sort/${sortOrder}`);
       setBooks(response.data);
       //if(response.data.length == 0) alert("Search Returned 0 results")
       //setBook(response.data);
@@ -93,10 +93,10 @@ function Home() {
               objectFit: "contain",
               borderBottom: "1px solid black",
             }}
-            src={"http://localhost:3500/BookImagesUploaded/" + book.image}
+            src={"https://backendapi-yo8i.onrender.com/BookImagesUploaded/" + book.image}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src="http://localhost:3500/BookImagesUploaded/noImage.png";}}
+              currentTarget.src="https://backendapi-yo8i.onrender.com/BookImagesUploaded/noImage.png";}}
           />
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>
@@ -143,7 +143,7 @@ function Home() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://localhost:3500/book/${isbn}`);
+      const response = await axios.get(`https://backendapi-yo8i.onrender.com/book/${isbn}`);
       setBook(response.data);
       setError(null);
     } catch (err) {

@@ -9,14 +9,14 @@ export default function Listing({ book, setAllListings }) {
 
   async function  deleteRecord() {
    await axios 
-      .delete(`http://localhost:3500/book/delete/${book._id}`)
+      .delete(`https://backendapi-yo8i.onrender.com/book/delete/${book._id}`)
       // .then((res) => navigate("/home"))
       .catch((err) => {
         console.log(err);
       });
 
    await   axios
-      .get("http://localhost:3500/user/listings")
+      .get("https://backendapi-yo8i.onrender.com/user/listings")
       .then((res) => {
         setAllListings(res.data);
       })
@@ -42,11 +42,11 @@ export default function Listing({ book, setAllListings }) {
             minHeight:"65px",
             objectFit: "contain",
           }}
-          src={"http://localhost:3500/BookImagesUploaded/" + book.image}
+          src={"https://backendapi-yo8i.onrender.com/BookImagesUploaded/" + book.image}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.src =
-              "http://localhost:3500/BookImagesUploaded/noImage.png";
+              "https://backendapi-yo8i.onrender.com/BookImagesUploaded/noImage.png";
           }}
         />
         <Card.Title>

@@ -9,7 +9,7 @@ export default function Order({ order,setOrders }) {
 
   function deleteRecord() {
     axios
-      .delete(`http://localhost:3500/user/${order._id}`)
+      .delete(`https://backendapi-yo8i.onrender.com/user/${order._id}`)
       .then((res) => navigate("/home"))
       .catch((err) => {
         console.log(err);
@@ -21,10 +21,10 @@ export default function Order({ order,setOrders }) {
 
   async function updateStatus(status, id) {
    try{
-    await axios.put(`http://localhost:3500/orders/statusUpdate/${id}`, {status})
+    await axios.put(`https://backendapi-yo8i.onrender.com/orders/statusUpdate/${id}`, {status})
 
     axios
-      .get("http://localhost:3500/orders")
+      .get("https://backendapi-yo8i.onrender.com/orders")
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
 

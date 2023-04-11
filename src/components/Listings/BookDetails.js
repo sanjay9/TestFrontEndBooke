@@ -13,7 +13,7 @@ export default function BookDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/book/details/${_id}`)
+      .get(`https://backendapi-yo8i.onrender.com/book/details/${_id}`)
       .then((res) => {
         setBook(res.data);
       })
@@ -36,11 +36,11 @@ export default function BookDetails() {
               border: "5px solid #0047a9",
               float: "left",
             }}
-            src={"http://localhost:3500/BookImagesUploaded/" + book.image}
+            src={"https://backendapi-yo8i.onrender.com/BookImagesUploaded/" + book.image}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.src =
-                "http://localhost:3500/BookImagesUploaded/noImage.png";
+                "https://backendapi-yo8i.onrender.com/BookImagesUploaded/noImage.png";
             }}
           />
           <div style={{ marginLeft: "30px", float: "left", width: "45%" }}>

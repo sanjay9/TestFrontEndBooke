@@ -11,7 +11,7 @@ const UserOrders = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3500/orders/user-orders/${userEmail}`)
+      .get(`https://backendapi-yo8i.onrender.com/orders/user-orders/${userEmail}`)
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
   }, []);
