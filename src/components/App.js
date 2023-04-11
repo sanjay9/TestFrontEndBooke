@@ -17,6 +17,7 @@ import AllListings from "./Listings/AllListings";
 import BookDetails from "./Listings/BookDetails";
 import OrderListings from "./orders/orderListings";
 import OrderSummary from "./orders/OrderSummary";
+import UserOrders from "./orders/UserOrders";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -50,7 +51,7 @@ function App() {
             <Route path="/listings" element={<AllListings />}></Route>
             <Route path="/book-details/:_id" element={<BookDetails />}></Route>
             <Route
-              path="/order-summary/:_id"
+              path="/order-summary/:_id/:conditionVerification"
               element={<OrderSummary />}
             ></Route>
             <Route
@@ -62,6 +63,7 @@ function App() {
               element={<EditAccount />}
             ></Route>
             <Route path="/order-list" element={<OrderListings />}></Route>
+            <Route path="/your-orders" element={<UserOrders />}></Route>
           </Routes>
         </div>
       </Router>

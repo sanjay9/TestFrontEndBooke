@@ -4,25 +4,51 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 
-export default function Listing({ book }) {
+export default function Listing({ book, setAllListings }) {
   let navigate = useNavigate();
 
-  function deleteRecord() {
-    axios
-      .delete(`https://backendapi-yo8i.onrender.com/book/${book.isbn}`)
+  async function  deleteRecord() {
+   await axios 
+      .delete(`http://localhost:3500/book/delete/${book._id}`)
       // .then((res) => navigate("/home"))
       .catch((err) => {
         console.log(err);
       });
+
+   await   axios
+      .get("http://localhost:3500/user/listings")
+      .then((res) => {
+        setAllListings(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   }
-  
+
   function handleEdit(event) {
     navigate(`/edit-listing/${event.target.value}`, true);
   }
 
   return (
     <Card style={{ width: "25rem" }}>
-      <Card.Body>
+      <Card.Body >
+        <Card.Img
+          style={{
+            width: "20%",
+            float: "left",
+            marginRight: "20px",
+            maxHeight: "200px",
+            minHeight:"65px",
+            objectFit: "contain",
+          }}
+          src={"http://localhost:3500/BookImagesUploaded/" + book.image}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src =
+              "http://localhost:3500/BookImagesUploaded/noImage.png";
+          }}
+        />
         <Card.Title>
           {book.title} by {book.authors}
         </Card.Title>
@@ -30,7 +56,8 @@ export default function Listing({ book }) {
         {/* <Button variant="primary" value={book.isbn} onClick={handleEdit}>
           Edit
         </Button>  */}
-        <Button variant="danger" onClick={deleteRecord}>
+        {book.sold ? (<Button variant="success">SOLD</Button>) : (<span></span>)}
+        {'  '}<Button variant="danger" onClick={deleteRecord}>
           Delete
         </Button>
       </Card.Body>

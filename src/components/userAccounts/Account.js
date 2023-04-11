@@ -9,7 +9,7 @@ export default function Account({ user }) {
 
   function deleteRecord() {
     axios
-      .delete(`https://backendapi-yo8i.onrender.com/user/${user.email}`)
+      .delete(`http://localhost:3500/user/${user.email}`)
       .then((res) => navigate("/home"))
       .catch((err) => {
         console.log(err);

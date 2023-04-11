@@ -9,7 +9,7 @@ export default function OrderSummary() {
   const [paymentValidated, setPaymentValidated] = useState(false);
   const [book, setBook] = useState({});
   const [seller, setSeller] = useState({});
-  const { _id } = useParams();
+  const { _id, conditionVerification } = useParams();
   let navigate = useNavigate();
 
   const { loggedIn, userEmail } = React.useContext(accountContext);
@@ -23,7 +23,7 @@ export default function OrderSummary() {
   //get book
   useEffect(() => {
     axios
-      .get(`https://backendapi-yo8i.onrender.com/book/details/${_id}`)
+      .get(`http://localhost:3500/book/details/${_id}`)
       .then((res) => {
         setBook(res.data);
       })
@@ -35,14 +35,16 @@ export default function OrderSummary() {
   function handlePurchase() {
     //create order object
     var bodyData = {
+      bookId: _id,
       buyerEmail: userEmail,
       sellerEmail: book.sellerEmail,
       isbn: book.isbn,
       price: book.price,
+      conditionVerification:  conditionVerification ? "Yes" : "No"
     };
 
     axios
-      .post(`https://backendapi-yo8i.onrender.com/orders/add-order`, bodyData)
+      .post(`http://localhost:3500/orders/add-order`, bodyData)
       .then((res) => {
         console.log(res.status);
         if (res.status === 201) {

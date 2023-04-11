@@ -15,7 +15,7 @@ export default function EditAccount() {
 
   useEffect(() => {
     axios
-      .get(`https://backendapi-yo8i.onrender.com/user/${email}`)
+      .get(`http://localhost:3500/user/${email}`)
       .then((res) => {
         populateFields(res.data);
       })
@@ -62,7 +62,7 @@ export default function EditAccount() {
     };
 
     axios
-      .patch(`https://backendapi-yo8i.onrender.com/user/${email}`, bodyData)
+      .patch(`http://localhost:3500/user/${email}`, bodyData)
       .then(() => {
         navigate("/home");
       })

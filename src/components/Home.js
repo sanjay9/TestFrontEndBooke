@@ -12,7 +12,7 @@ function Home() {
   let navigate = useNavigate();
   React.useEffect(() => {
     axios
-      .get("https://backendapi-yo8i.onrender.com/book/")
+      .get("http://localhost:3500/book/")
       .then((res) => setBooks(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -26,7 +26,7 @@ function Home() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`https://backendapi-yo8i.onrender.com/book/${isbn}`);
+      const response = await axios.get(`http://localhost:3500/book/${isbn}`);
       setBooks(response.data);
       if(response.data.length == 0) alert("Search Returned 0 results")
       //setBook(response.data);
@@ -41,7 +41,7 @@ function Home() {
 
   const sortBooks = async (sortOrder) => {
     try {
-      const response = await axios.get(`https://backendapi-yo8i.onrender.com/book/sort/${sortOrder}`);
+      const response = await axios.get(`http://localhost:3500/book/sort/${sortOrder}`);
       setBooks(response.data);
       //if(response.data.length == 0) alert("Search Returned 0 results")
       //setBook(response.data);
@@ -93,10 +93,10 @@ function Home() {
               objectFit: "contain",
               borderBottom: "1px solid black",
             }}
-            src={"https://backendapi-yo8i.onrender.com/BookImagesUploaded/" + book.image}
+            src={"http://localhost:3500/BookImagesUploaded/" + book.image}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src="https://backendapi-yo8i.onrender.com/BookImagesUploaded/noImage.png";}}
+              currentTarget.src="http://localhost:3500/BookImagesUploaded/noImage.png";}}
           />
           <Card.Body>
             <Card.Title style={{ textAlign: "center" }}>
@@ -110,6 +110,12 @@ function Home() {
             <Card.Text>{book.description}</Card.Text>
             <hr/>
             <Button variant="primary" onClick={() => navigate('/book-details/' + book._id)}>Price: ${book.price.toFixed(2)}</Button>
+            
+            {'         '}
+            {book.sold ? (<Button variant="danger">SOLD</Button>) : (<span></span>)}
+            
+            
+            
             <br/>
             <small className="text-muted">Book viewed {book.views} times</small>
           </Card.Body>

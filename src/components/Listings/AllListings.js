@@ -11,7 +11,7 @@ export default function AllListings() {
 
   useEffect(() => {
     axios
-      .get("https://backendapi-yo8i.onrender.com/user/listings")
+      .get("http://localhost:3500/user/listings")
       .then((res) => {
         setAllListings(res.data);
       })
@@ -24,7 +24,7 @@ export default function AllListings() {
     <div>
       <h1>Your Listings</h1>
       {allListings.map((listing) => listing.sellerEmail === userEmail ? (
-        <Listing key={listing._id} book={listing} /> 
+        <Listing key={listing._id} book={listing} setAllListings={setAllListings} /> 
         ) : (
         <div></div>
         )       

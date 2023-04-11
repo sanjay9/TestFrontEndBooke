@@ -7,7 +7,7 @@ const ActiveOrders = () => {
 
   useEffect(() => {
     axios
-      .get("https://backendapi-yo8i.onrender.com/orders")
+      .get("http://localhost:3500/orders")
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -16,7 +16,7 @@ const ActiveOrders = () => {
     <div>
       <h2>Active Orders</h2>
       {orders.map((order) => (
-        <Order key={order._id} order={order} />
+        <Order key={order._id} order={order} setOrders={setOrders} />
       ))}
     </div>
   );
