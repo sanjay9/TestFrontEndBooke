@@ -16,7 +16,7 @@ export default function AccountDetails() {
   useEffect(() => {
     if (userEmail !== "") {
       axios
-        .get(`https://backendapi-yo8i.onrender.com/user/${userEmail}`)
+        .get(`http://localhost:3500/user/${userEmail}`)
         .then((res) => {
           setFirstName(res.data.fname);
           setLastName(res.data.lname);
@@ -50,7 +50,7 @@ export default function AccountDetails() {
     };
 
     axios
-      .patch(`https://backendapi-yo8i.onrender.com/user/${userEmail}`, bodyData)
+      .patch(`http://localhost:3500/user/${userEmail}`, bodyData)
       .then(() => {
         navigate("/home");
       })

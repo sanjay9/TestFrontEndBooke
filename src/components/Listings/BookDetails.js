@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 
 export default function BookDetails() {
   let navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function BookDetails() {
 
   useEffect(() => {
     axios
-      .get(`https://backendapi-yo8i.onrender.com/book/details/${_id}`)
+      .get(`http://localhost:3500/book/details/${_id}`)
       .then((res) => {
         setBook(res.data);
       })
@@ -36,12 +36,13 @@ export default function BookDetails() {
               border: "5px solid #0047a9",
               float: "left",
             }}
-            src={"https://backendapi-yo8i.onrender.com/BookImagesUploaded/" + book.image}
+            src={"http://localhost:3500/BookImagesUploaded/" + book.image}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.src =
-                "https://backendapi-yo8i.onrender.com/BookImagesUploaded/noImage.png";
+                "http://localhost:3500/BookImagesUploaded/noImage.png";
             }}
+            alt={"book cover"}
           />
           <div style={{ marginLeft: "30px", float: "left", width: "45%" }}>
             <h1 style={{ marginBottom: "0px" }}>{book.title}</h1>
@@ -62,23 +63,37 @@ export default function BookDetails() {
             {"         "}
             {book.sold ? (
               <Button variant="danger">SOLD</Button>
-            ) : ( <>
-              <Button
-                variant="primary"
-                onClick={() => navigate(`/order-summary/${book._id}/${conditionVerification}`)}
-              >
-                Buy
-              </Button>
-              <Form.Check 
-              type="checkbox"
-              id="conditionVerify"
-              label="Condition Guarantee +$5"
-              checked={conditionVerification}
-              onChange = {(event) => setConditionVerification(event.target.checked)}
-
-            /></>
+            ) : (
+              <>
+                <Button
+                  variant="primary"
+                  onClick={() =>
+                    navigate(
+                      `/order-summary/${book._id}/${conditionVerification}`
+                    )
+                  }
+                >
+                  Buy
+                </Button>
+                <Form.Check
+                  type="checkbox"
+                  id="conditionVerify"
+                  label="Condition Guarantee +$5"
+                  checked={conditionVerification}
+                  onChange={(event) =>
+                    setConditionVerification(event.target.checked)
+                  }
+                />
+              </>
             )}
-
+            {"         "}
+            <Button
+            href={`mailto:${book.sellerEmail}?Subject=Bookepedia%20Order%20`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Email Seller
+          </Button>
             <br />
             <small className="text-muted">Book viewed {book.views} times</small>
             <br />

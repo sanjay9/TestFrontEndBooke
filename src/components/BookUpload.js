@@ -48,7 +48,7 @@ function BookUpload(props) {
     //formData.append("bookRec", bookRec);
 
     const result = await axios
-      .post("https://backendapi-yo8i.onrender.com/book/upload/", formData, {
+      .post("http://localhost:3500/book/upload/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -64,7 +64,7 @@ function BookUpload(props) {
 
     /*
     await axios
-      .post("https://backendapi-yo8i.onrender.com/book/upload/", bookRec)
+      .post("http://localhost:3500/book/upload/", bookRec)
       .then((res) => {
         console.log("success");
         alert(`The Book "${bookRec.title}" has been uploaded successfully`);

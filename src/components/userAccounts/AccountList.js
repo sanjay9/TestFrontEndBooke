@@ -10,7 +10,7 @@ export default function AccountList() {
 
   useEffect(() => {
     axios
-      .get("https://backendapi-yo8i.onrender.com/user/")
+      .get("http://localhost:3500/user/")
       .then((res) => {
         setAllAccounts(res.data);
       })
