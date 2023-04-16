@@ -7,7 +7,7 @@ const ActiveOrders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3500/orders")
+      .get("https://backendapi-yo8i.onrender.com/orders")
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
   }, []);
